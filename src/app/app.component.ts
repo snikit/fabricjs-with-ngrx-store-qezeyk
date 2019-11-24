@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   canvas: fromFabric.fabric.Canvas;
   fabricRef = fromFabric.fabric.Object.prototype;
   stacking = false;
-  caching = true;
+  caching = false;
   baseSvgPath = TEST_SVG; //"/assets/sofa.svg";
   dims = {
     height: 700,
