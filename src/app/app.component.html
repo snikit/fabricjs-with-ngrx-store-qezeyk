@@ -3,14 +3,12 @@
 <!-- <button style="margin: 10px" (click)="redo()">redo</button> -->
 <!-- <button style="margin: 10px" (click)="undo()">undo</button> -->
 no of svgs : <input type="text" #LOAD value="50"/> 
-<button style="margin: 10px" *ngIf="!loading"  (click)="addSvg(LOAD.value)">add svg</button>
-<br> 
+<button style="margin: 10px" *ngIf="!loading"  (click)="addSvg(LOAD.value)">load</button>
 <button style="margin: 10px" (click)="clearcanvas()">clear</button>
 <br>
 <button (click)="caching=!caching; ">caching {{caching}}</button>
 <button (click)="stacking=!stacking; canvas.preserveObjectStacking=stacking">stacking {{stacking}}</button>
 
 <br>
-{{loading}}
 
 <canvas id="c"></canvas>

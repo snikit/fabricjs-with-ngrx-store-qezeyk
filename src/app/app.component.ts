@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   fabricRef = fromFabric.fabric.Object.prototype;
   stacking = false;
   caching = false;
-  loading = false;
   baseSvgPath = TEST_SVG; //"/assets/sofa.svg";
   dims = {
     height: 700,
@@ -55,16 +54,7 @@ export class AppComponent implements OnInit {
     return new fromFabric.fabric.Point(x, y);
   }
 
-
-  checkLoading(loading){
-    console.log(loading)
-    if(loading ==0){
-      this.loading=false
-    }
-  }
-
   addSvg(load: number) {
-    this.loading = true
     let loading = load;
 
     this.canvas.renderOnAddRemove = false;
@@ -79,11 +69,11 @@ export class AppComponent implements OnInit {
             top: pt.y
           });
           this.canvas.add(asset);
-         this.checkLoading(--loading);
+          --loading;
           console.log(asset);
         },
         rej => {
-         this.checkLoading(--loading)
+          --loading;
           console.log("");
         }
       );
