@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       imageSmoothingEnabled: false,
       enableRetinaScaling: true,
       preserveObjectStacking: this.stacking,
-      backgroundColor: "yellow",
+      backgroundColor: "transparent",
       perPixelTargetFind: false
     });
 
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
 
   clearcanvas() {
     this.canvas.clear().renderAll();
+    this.canvas.backgroundColor = 'transparent'
   }
 
   randomInt(min, max) {

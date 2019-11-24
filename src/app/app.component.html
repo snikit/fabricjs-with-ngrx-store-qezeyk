@@ -1,12 +1,12 @@
-s
+
 
 <!-- <button style="margin: 10px" (click)="redo()">redo</button> -->
 <!-- <button style="margin: 10px" (click)="undo()">undo</button> -->
-no : <input  type="text" #LOAD value="500"/> <button style="margin: 10px"  (click)="addSvg(LOAD.value)">add svg</button>
+no of svgs : <input  type="text" #LOAD value="500"/> <button style="margin: 10px"  (click)="addSvg(LOAD.value)">add svg</button>
 <br>
 <button style="margin: 10px" (click)="clearcanvas()">clear</button>
 <br>
-
+<button (click)="caching=!caching; ">caching {{caching}}</button>
 <button (click)="stacking=!stacking; canvas.preserveObjectStacking=stacking">stacking {{stacking}}</button>
 <br>
 <canvas id="c"></canvas>
