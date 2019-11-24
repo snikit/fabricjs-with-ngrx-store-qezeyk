@@ -1,7 +1,13 @@
 
-<canvas id="c"></canvas>
-<button style="margin: 10px" (click)="redo()">redo</button>
-<button style="margin: 10px" (click)="undo()">undo</button>
-<button style="margin: 10px"  (click)="addSvg(LOAD.value)">add rect</button>
+
+<!-- <button style="margin: 10px" (click)="redo()">redo</button> -->
+<!-- <button style="margin: 10px" (click)="undo()">undo</button> -->
+<button style="margin: 10px"  (click)="addSvg(LOAD.value)">add svg</button>
 <button style="margin: 10px" (click)="clearcanvas()">clear</button>
-<input  type="text" #LOAD /> 
+<br>
+
+no : <input  type="text" #LOAD value="1"/> 
+<button (click)="caching=!caching; fabricRef.objectCaching=caching">caching {{caching}}</button>
+<button (click)="stacking=!stacking; canvas.preserveObjectStacking=stacking">stacking {{stacking}}</button>
+<br>
+<canvas id="c"></canvas>
