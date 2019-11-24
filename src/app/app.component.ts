@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   fabricRef = fromFabric.fabric.Object.prototype;
   stacking = false;
   caching = false;
+  loading = false;
   baseSvgPath = TEST_SVG; //"/assets/sofa.svg";
   dims = {
     height: 700,
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
 
   clearcanvas() {
     this.canvas.clear().renderAll();
-    this.canvas.backgroundColor = 'transparent'
+    this.canvas.backgroundColor = "transparent";
   }
 
   randomInt(min, max) {
@@ -54,12 +55,22 @@ export class AppComponent implements OnInit {
     return new fromFabric.fabric.Point(x, y);
   }
 
+
+  checkLoading(loading){
+    console.log(loading)
+    if(loading ==0){
+      this.loading=false
+    }
+  }
+
   addSvg(load: number) {
+    this.loading = true
+    let loading = load;
+
     this.canvas.renderOnAddRemove = false;
     for (let i = 0; i < load; i++) {
       this.fetchUsingFabric(this.baseSvgPath).then(
         asset => {
-
           this.setCaching(asset);
 
           const pt = this.randomPoint();
@@ -68,10 +79,11 @@ export class AppComponent implements OnInit {
             top: pt.y
           });
           this.canvas.add(asset);
-
+         this.checkLoading(--loading);
           console.log(asset);
         },
         rej => {
+         this.checkLoading(--loading)
           console.log("");
         }
       );
@@ -80,15 +92,13 @@ export class AppComponent implements OnInit {
   }
 
   setCaching(object: fromFabric.fabric.Object) {
-
-    if(this.caching){
-      return object
+    if (this.caching) {
+      return object;
     }
 
     object.set({
       objectCaching: this.caching
     });
-
 
     object["_objects"] &&
       object["_objects"].forEach(innerObj => {
