@@ -2,9 +2,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as fromFabric from "fabric";
 import * as canvasActions from "./store/canvas.actions";
-import { UndoActions } from "ngrx-undo-redo";
-import { Store } from "@ngrx/store";
-import { take } from "rxjs/operators";
 
 @Component({
   selector: "my-app",
@@ -18,8 +15,6 @@ export class AppComponent implements OnInit {
   mods = 0;
   load  : number = 10
 
-  constructor(private store: Store<any>) {
-  }
 
   ngOnInit() {
     this.canvas = new fromFabric.fabric.Canvas("c", {
@@ -57,27 +52,5 @@ export class AppComponent implements OnInit {
     console.log(this.load)
   }
 
-  redo() {
-    this.store.dispatch(<UndoActions>{ type: "REDO_STATE" });
-
-    this.store
-      .select("canvas")
-      .pipe(take(1))
-      .subscribe(x => {
-        this.canvas.loadFromJSON(x.canvas, () => {
-        });
-      });
-
-  }
-
-  undo() {
-    this.store.dispatch(<UndoActions>{ type: "UNDO_STATE" });
-    this.store
-      .select("canvas")
-      .pipe(take(1))
-      .subscribe(x => {
-        this.canvas.loadFromJSON(x.canvas, () => {
-        });
-      });
-  }
+ 
 }
