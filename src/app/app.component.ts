@@ -9,11 +9,11 @@ import * as fromFabric from "fabric";
 export class AppComponent implements OnInit {
   canvas: fromFabric.fabric.Canvas;
   fabricRef = fromFabric.fabric.Object.prototype;
-  caching = false;
   stacking = false;
+  caching = true;
   baseSvgPath = TEST_SVG; //"/assets/sofa.svg";
   dims = {
-    height: 1000,
+    height: 700,
     width: 1000
   };
 
@@ -28,8 +28,6 @@ export class AppComponent implements OnInit {
       imageSmoothingEnabled: false,
       enableRetinaScaling: true,
       preserveObjectStacking: this.stacking,
-      targetFindTolerance: 4,
-      stateful: false,
       backgroundColor: "yellow",
       perPixelTargetFind: false
     });
@@ -60,6 +58,7 @@ export class AppComponent implements OnInit {
     for (let i = 0; i < load; i++) {
       this.fetchUsingFabric(this.baseSvgPath).then(
         asset => {
+
           this.setCaching(asset);
 
           const pt = this.randomPoint();
@@ -80,9 +79,16 @@ export class AppComponent implements OnInit {
   }
 
   setCaching(object: fromFabric.fabric.Object) {
+
+    if(this.caching){
+      return object
+    }
+
     object.set({
       objectCaching: this.caching
     });
+
+
     object["_objects"] &&
       object["_objects"].forEach(innerObj => {
         innerObj.objectCaching = this.caching;
