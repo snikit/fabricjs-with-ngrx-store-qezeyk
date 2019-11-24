@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from "@angular/core";
 import * as fromFabric from "fabric";
-import * as canvasActions from "./store/canvas.actions";
 
 @Component({
   selector: "my-app",
@@ -13,7 +12,6 @@ export class AppComponent implements OnInit {
 
   state = [];
   mods = 0;
-  load  : number = 10
 
 
   ngOnInit() {
@@ -33,7 +31,6 @@ export class AppComponent implements OnInit {
 
 
 
-  console.log(this.load)
 
 
 
@@ -48,8 +45,8 @@ export class AppComponent implements OnInit {
 
   
 
-  addSvg() {
-    console.log(this.load)
+  addSvg(load) {
+    console.log(load)
   }
 
  
