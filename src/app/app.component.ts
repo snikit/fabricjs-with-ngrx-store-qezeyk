@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
 
   activateListener(){
     this.canvas.on({
-      'mouse:down:before' : e=>{
-        fromFabric.fabric.Object.prototype.objectCaching = true;
+      'mouse:down' : e=>{
+        // fromFabric.fabric.Object.prototype.objectCaching = true;
       },
       'mouse:up' : e=>{
-        fromFabric.fabric.Object.prototype.objectCaching = false;
+        // fromFabric.fabric.Object.prototype.objectCaching = false;
       }
     })
   }
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
   init() {
 
-fromFabric.fabric.Object.prototype.objectCaching = false;
+// fromFabric.fabric.Object.prototype.objectCaching = false;
 
     let { height, width } = this.dims;
 
@@ -58,10 +58,12 @@ fromFabric.fabric.Object.prototype.objectCaching = false;
     this.canvas.backgroundColor = "transparent";
   }
 
+  i =0
+
   randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return 50* this.i//Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   randomPoint() {
@@ -73,6 +75,7 @@ fromFabric.fabric.Object.prototype.objectCaching = false;
 
   addSvg(load: number) {
     let loading = load;
+    this.i++ // batches of 100 at 100 * batch no for location
 
     this.canvas.renderOnAddRemove = false;
     for (let i = 0; i < load; i++) {
@@ -86,11 +89,9 @@ fromFabric.fabric.Object.prototype.objectCaching = false;
           });
           this.canvas.add(asset);
           --loading;
-          console.log(asset);
         },
         rej => {
           --loading;
-          console.log("");
         }
       );
     }
