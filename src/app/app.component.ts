@@ -87,12 +87,12 @@ export class AppComponent implements OnInit {
     }
 
     object.set({
-      objectCaching: this.caching
+      objectCaching: true
     });
 
     object["_objects"] &&
       object["_objects"].forEach(innerObj => {
-        innerObj.objectCaching = this.caching;
+        innerObj.objectCaching = true;
       });
 
     return object;
