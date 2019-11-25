@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
   randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
+
     return 50* this.i//Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
