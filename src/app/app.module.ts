@@ -1,16 +1,14 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/reducers/canvas.reducers';
-import { reducers, metaReducers } from "./store/reducers";
-import { AppComponent } from './app.component';
-import { CanvasStoreModule } from './store/canvas-store.module';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+
+import { AppComponent } from "./app.component";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule
-  ],
   declarations: [AppComponent],
+  imports: [BrowserModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  declarations: [AppComponent];
+}
